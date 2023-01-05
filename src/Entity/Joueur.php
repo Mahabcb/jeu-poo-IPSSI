@@ -17,7 +17,9 @@ class Joueur extends AbstractPersonnage{
         // on aimerait regagner de la vie sur un int fixe
         if($this->vie === false) {
             throw new \Exception("Vous êtes mort, vous ne pouvez pas vous regénérer");
-            exit();
+        }
+        if($this->pointDeVie >= 100) {
+            throw new \Exception("Vous êtes mort, vous ne pouvez pas vous regénérer");
         }
         return $this->pointDeVie += 10;
     }
@@ -29,3 +31,11 @@ class Joueur extends AbstractPersonnage{
         exit();
     }
 }
+
+/**
+ * Quand doit-on throw une exception ?
+ * 
+ * Quand on veut stopper le script
+ * 
+ * 
+ */

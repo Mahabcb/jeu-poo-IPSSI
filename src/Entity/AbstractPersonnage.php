@@ -5,7 +5,7 @@
  * donc on doit obligatoirement avoir des propriétés protected
  */
 
- namespace App\Entity;
+namespace App\Entity;
 
 abstract class AbstractPersonnage{
 
