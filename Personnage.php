@@ -1,16 +1,16 @@
 <?php
+/**
+ * Nous sommes dans une class abstraite
+ * Nos propriétés doivent etre accessible par les classes filles
+ * donc on doit obligatoirement avoir des propriétés protected
+ */
 
 abstract class Personnage{
 
-    private string $nom;
-    private int $energie;
-    private bool $vie;
-    private int $force;
-
-    public function __construct($nom)
-    {
-        $this->nom = $nom;
-    }
+    protected string $nom;
+    protected int $energie;
+    protected bool $vie;
+    protected int $force;
 
     /**
      * Get the value of nom
