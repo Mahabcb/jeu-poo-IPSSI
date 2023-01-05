@@ -10,12 +10,13 @@
 abstract class AbstractPersonnage{
 
     protected string $nom;
-    protected int $energie; // strictement superieur
+    protected int $pointDeVie; // strictement superieur
     protected bool $vie; // egal à false quand energie = 0 max 100
     protected int $force; // entre 1 et 10 et de facon aleatoire
 
     public function __construct(string $nom)
     {
+        $this->pointDeVie = 100;
         $this->force = rand(1, 10);
         $this->vie = true;
         $this->nom = $nom;
@@ -34,7 +35,7 @@ abstract class AbstractPersonnage{
      */ 
     public function getEnergie(): ?int
     {
-        return $this->energie;
+        return $this->pointDeVie;
     }
 
     /**
@@ -44,7 +45,7 @@ abstract class AbstractPersonnage{
      */ 
     public function setEnergie(int $energie)
     {
-        $this->energie = $energie;
+        $this->pointDeVie = $energie;
 
         return $this;
     }
@@ -98,6 +99,7 @@ abstract class AbstractPersonnage{
     {
         if($this->vie === false) {
             throw new \Exception("Vous êtes mort, vous ne pouvez pas attaquer");
+            exit();
         }else{
             $degats = $this->force;
 
@@ -109,14 +111,16 @@ abstract class AbstractPersonnage{
             }
             return false;
         }
-        
     }
 
-    public function subirDegats(int $degats)
+    /**
+     * Cette function permet de faire subir des dégat à notre cible
+     */
+    protected function subirDegats(int $degats)
     {
-        $this->vie -= $degats;
+        $this->pointDeVie -= $degats;
 
-        if($this->vie <= 0){
+        if($this->pointDeVie <= 0){
             $this->vie = false;
             return print_r("Vous êtes mort");
             exit();
